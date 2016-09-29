@@ -1,15 +1,6 @@
 FROM ubuntu:wily
 MAINTAINER Xiaohui XUE <xiaohui.xue@sap.com>
 
-ENV NO_PROXY=localhost,sap.corp,mo.sap.corp,cc.mo.sap.corp,sap.biz,cloud.sap,sap,cc.ondemand.com,moo-repo,moo-repo.wdf.sap.corp,repo,repo.wdf.sap.corp,169.254.169.254,mo-7fab09663,127.0.0.1,10.97.174.253
-ENV HTTPS_PROXY=http://proxy.wdf.sap.corp:8080
-ENV HTTP_PROXY=http://proxy.wdf.sap.corp:8080
-ENV FTP_PROXY=http://proxy.wdf.sap.corp:8080
-ENV all_proxy=http://proxy.wdf.sap.corp:8080
-ENV https_proxy=http://proxy.wdf.sap.corp:8080
-ENV http_proxy=http://proxy.wdf.sap.corp:8080
-ENV ftp_proxy=http://proxy.wdf.sap.corp:8080
-
 # Install utilities
 RUN locale-gen en_US.UTF-8 && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
