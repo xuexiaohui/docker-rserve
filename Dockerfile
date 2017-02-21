@@ -1,5 +1,9 @@
-FROM ubuntu:wily
+FROM ubuntu:xenial
 MAINTAINER Xiaohui XUE <xiaohui.xue@sap.com>
+
+ADD r-base_3.3.2-1xenial0_all.deb /root/
+ADD r-base-core_3.3.2-1xenial0_amd64.deb /root/  
+ADD r-recommended_3.3.2-1xenial0_all.deb /root/ 
 
 # Install utilities
 RUN locale-gen en_US.UTF-8 && \
@@ -19,7 +23,32 @@ RUN locale-gen en_US.UTF-8 && \
     pwgen \
     ed \
     libxml2-dev \
-    r-base
+    zip \
+    libpaper-utils \
+    xdg-utils \
+    libblas3 \
+    libcairo2 \
+    libcurl3 \
+    libjpeg8 \
+    liblapack3 \
+    libpango-1.0-0 \ 
+    libpangocairo-1.0-0 \
+    libtcl8.6 \
+    libtiff5 \
+    libtk8.6 \
+    r-cran-boot \
+    r-cran-cluster \
+    r-cran-foreign \
+    r-cran-kernsmooth \
+    r-cran-lattice \
+    r-cran-mgcv \
+    r-cran-nlme \
+    r-cran-rpart \
+    r-cran-survival 
+
+RUN dpkg -i /root/r-base-core_3.3.2-1xenial0_amd64.deb && \
+    dpkg -i /root/r-recommended_3.3.2-1xenial0_all.deb && \ 
+    dpkg -i /root/r-base_3.3.2-1xenial0_all.deb  
 
 #Set environment variables
 ENV HOME /root
