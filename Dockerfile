@@ -44,7 +44,10 @@ RUN locale-gen en_US.UTF-8 && \
     r-cran-mgcv \
     r-cran-nlme \
     r-cran-rpart \
-    r-cran-survival 
+    r-cran-survival \
+    libssl-dev \
+    libssh2-1-dev \
+    libcurl4-openssl-dev
 
 RUN dpkg -i /root/r-base-core_3.3.2-1xenial0_amd64.deb && \
     dpkg -i /root/r-recommended_3.3.2-1xenial0_all.deb && \ 
