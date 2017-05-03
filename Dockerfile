@@ -6,7 +6,10 @@ ADD r-base-core_3.3.2-1xenial0_amd64.deb /root/
 ADD r-recommended_3.3.2-1xenial0_all.deb /root/ 
 
 # Install utilities
-RUN locale-gen en_US.UTF-8 && \
+RUN apt-get clean && \
+    apt-get update && \
+    apt-get install -y locales && \
+    locale-gen en_US.UTF-8 && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
     sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
     apt-get -y update && \
@@ -47,32 +50,48 @@ RUN locale-gen en_US.UTF-8 && \
     r-cran-survival \
     libssl-dev \
     libssh2-1-dev \
-    libcurl4-openssl-dev
+    libcurl4-openssl-dev \
+    libapparmor-dev \
+    apparmor \
+    apparmor-utils \
+    apparmor-profiles
+
 
 RUN dpkg -i /root/r-base-core_3.3.2-1xenial0_amd64.deb && \
     dpkg -i /root/r-recommended_3.3.2-1xenial0_all.deb && \ 
     dpkg -i /root/r-base_3.3.2-1xenial0_all.deb  
 
+
+#Create a user dedicated for R
+RUN useradd ruser -m
+
 #Set environment variables
-ENV HOME /root
+ENV HOME /home/ruser
 
 # Define working directory
-WORKDIR /root
+WORKDIR /home/ruser
 
-ADD install-rserve.R /root/
+ADD install-rserve.R /home/ruser/
 RUN Rscript install-rserve.R
 
 RUN ["bash"]
 
-ADD rserve.conf /root/
-ADD scripts /root/scripts
-RUN chmod +x /root/scripts/*.sh && \
-    touch /root/.firstrun
+ADD rserve.conf /home/ruser/
+ADD scripts /home/ruser/scripts
+RUN chmod +x /home/ruser/scripts/*.sh && \
+    touch /home/ruser/.firstrun
+
+#Setup AppArmor profiles 
+RUN cp -r /usr/local/lib/R/site-library/RAppArmor/profiles/debian/* /etc/apparmor.d/
+RUN service apparmor restart 
+#RUN    aa-disable usr.bin.r
+
+USER ruser
 
 EXPOSE 6311
 
 ENV R_HOME /usr/lib/R
-ENTRYPOINT ["/root/scripts/run.sh"]
+ENTRYPOINT ["/home/ruser/scripts/run.sh"]
 CMD [""]
 
 VOLUME [“/data”]
