@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Initialize first run
-if [[ -e /root/.firstrun ]]; then
-    /root/scripts/first_run.sh
+if [[ -e /home/ruser/.firstrun ]]; then
+    /home/ruser/scripts/first_run.sh
 fi
 
 

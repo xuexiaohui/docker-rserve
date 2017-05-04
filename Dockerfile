@@ -76,15 +76,15 @@ RUN Rscript install-rserve.R
 
 RUN ["bash"]
 
+
 ADD rserve.conf /home/ruser/
 ADD scripts /home/ruser/scripts
-RUN chmod +x /home/ruser/scripts/*.sh && \
+RUN chmod 777 /home/ruser/scripts/*.sh && \
     touch /home/ruser/.firstrun
 
 #Setup AppArmor profiles 
 RUN cp -r /usr/local/lib/R/site-library/RAppArmor/profiles/debian/* /etc/apparmor.d/
 RUN service apparmor restart 
-#RUN    aa-disable usr.bin.r
 
 USER ruser
 
