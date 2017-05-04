@@ -5,7 +5,7 @@ PASS=${RSERVE_PASSWORD:-$(pwgen -s -1 16)}
 
 # Create User
 echo "Creating user: \"$USER\"..."
-cat > passwordfile << EOF1
+cat > /home/ruser/passwordfile << EOF1
 $USER $PASS
 EOF1
 
@@ -14,5 +14,5 @@ echo "RServe User: \"$USER\""
 echo "RServe Password: \"$PASS\""
 echo "========================================================================"
 
-rm -f /root/.firstrun
+rm -f /home/ruser/.firstrun
 
