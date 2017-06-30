@@ -1,6 +1,12 @@
 install.packages(c('Rserve','RAppArmor'), repos='http://cran.r-project.org')  
 
-install.packages(c('psych','devtools','sqldf','MASS','tibble','lazyeval','stringi','magrittr','labeling','lattice','evaluate','highr','markdown','yaml','dplyr','arules','rpart','adabag','randomForest','monmlp','nnet','R.utils','circlize','Lahman','abc','acepack','actuar','ape','aplpack','approximator','arm','bclust','cclust','cluster','coda','coin','corpcor','data.table','digest','dlm','bclust','evaluate','expm','foreach','forecast','gamlr','ggplot2','polynom','reshape','stringr','tidyr','diffobj','tidytext','plotly','janitor','gmodels','openxlsx','choroplethr','RColorBrewer','metricsgraphics','bit64'), repos='http://cran.r-project.org')  
+###First list of packages to install (2017-06-13)
+install.packages(c('abc','acepack','actuar','adabag','ape','aplpack','approximator','Arm','arules','assertthat','bclust','bit64','cclust','choroplethr','circlize','CLUSTER','Coda','coin','corpcor','data.table','DBI','diffobj','dlm','dplyr','Expm','forecast-R','gamlr','ggplot2','gmodels','highr','Iterators','Janitor','jsonlite','labeling','Lahman','Lattice','Lazyeval','magrittr','markdown','MASS','metricsgraphics','monmlp','Nnet','openxlsx','plotly','plyr','polynom','Psych','rpart','r-digest','r-evaluate','r-foreach','r-yaml','R.utils','randomForest','RColorBrewer','reshape','rJava','RJDBC','RODBC','sqldf','stringi','stringr','tibble','tidyr','tidytext'), repos='http://cran.r-project.org')  
 
-#library(devtools)
-#devtools::install_github("timelyportfolio/rcdimple")
+
+### Second list of packages to install (2017-06-30)
+install.packages(c('devtools','ggvis','googleVis','highcharter','plotly'), repos='http://cran.r-project.org')  
+library(devtools)
+devtools::install_github("ramnathv/rCharts")
+
+

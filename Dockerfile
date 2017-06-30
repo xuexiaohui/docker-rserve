@@ -6,15 +6,14 @@ ADD r-base-core_3.3.2-1xenial0_amd64.deb /root/
 ADD r-recommended_3.3.2-1xenial0_all.deb /root/ 
 
 # Install utilities
-RUN apt-get clean && \
-    apt-get update && \
-    apt-get install -y locales && \
-    locale-gen en_US.UTF-8 && \
-    echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
-    sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+RUN apt-get -y clean && \
     apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y dist-upgrade && \
+    apt-get -y install -y locales && \
+    locale-gen en_US.UTF-8 && \
+    echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
+    sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
     apt-get install -y --force-yes \
     build-essential \
     software-properties-common \
