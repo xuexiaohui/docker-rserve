@@ -50,11 +50,22 @@ RUN apt-get -y clean && \
     libssl-dev \
     libssh2-1-dev \
     libcurl4-openssl-dev \
-    libapparmor-dev \
-    apparmor \
-    apparmor-utils \
-    apparmor-profiles
+    libapparmor-dev \	
+    apparmor \			
+    apparmor-utils \	
+    apparmor-profiles \	
+    libudunits2-dev \ 	
+    libgdal1-dev \    	
+	libproj-dev \	 	
+	libgmp-dev \	 	
+	default-jre \	  	
+	default-jdk \	  	
+	libnlopt-dev
 
+###Update the library libgdal that allows the package choroplethr to be installed 
+RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable && \
+	apt -y update && \
+	apt -y upgrade
 
 RUN dpkg -i /root/r-base-core_3.3.2-1xenial0_amd64.deb && \
     dpkg -i /root/r-recommended_3.3.2-1xenial0_all.deb && \ 
