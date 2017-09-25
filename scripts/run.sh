@@ -6,7 +6,7 @@ if [[ -e /home/ruser/.firstrun ]]; then
 fi
 
 
-/usr/local/lib/R/site-library/Rserve/libs/Rserve --RS-port 6311  --RS-enable-remote --no-save --RS-conf rserve.conf 
+/usr/local/lib/R/site-library/Rserve/libs/Rserve.dbg --RS-port 6311  --RS-enable-remote --no-save --RS-conf rserve.conf 
 while true; do
   sleep 1
 done
