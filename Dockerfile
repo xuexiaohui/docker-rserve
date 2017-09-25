@@ -60,7 +60,10 @@ RUN apt-get -y clean && \
 	libgmp-dev \	 	
 	default-jre \	  	
 	default-jdk \	  	
-	libnlopt-dev
+	libnlopt-dev \
+	libglu1-mesa-dev \
+	freeglut3-dev \
+	mesa-common-dev
 
 ###Update the library libgdal that allows the package choroplethr to be installed 
 RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable && \
@@ -83,6 +86,9 @@ WORKDIR /home/ruser
 
 ADD install-rserve.R /home/ruser/
 RUN Rscript install-rserve.R
+
+ADD install-rserve-3.3.2-2017.09.30.R /home/ruser/
+RUN Rscript install-rserve-3.3.2-2017.09.30.R
 
 RUN ["bash"]
 
