@@ -60,14 +60,10 @@ RUN apt-get -y clean && \
 	libgmp-dev \	 	
 	default-jre \	  	
 	default-jdk \	  	
-<<<<<<< HEAD
 	libnlopt-dev \
 	libglu1-mesa-dev \
 	freeglut3-dev \
-	mesa-common-dev
-=======
-	libnlopt-dev
->>>>>>> 2bdbb24c4edbfe488486848ae20d5c4fa2fa68f5
+	mesa-common-dev 
 
 ###Update the library libgdal that allows the package choroplethr to be installed 
 RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable && \
